@@ -24,15 +24,7 @@
         android:name="com.example.themoviedb.ui.movies.DetailsFragment"
         android:label="DetailsFragment" >
         <argument
-            android:name="poster_path"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="title"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="overview"
+            android:name="movieId"
             app:argType="string"
             app:nullable="true" />
     </fragment>

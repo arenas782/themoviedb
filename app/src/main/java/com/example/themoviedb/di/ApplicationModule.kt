@@ -4,7 +4,7 @@ package com.example.themoviedb.di
 import android.content.Context
 import androidx.databinding.ktx.BuildConfig
 import androidx.room.Room
-import com.example.themoviedb.data.api.moviesService
+import com.example.themoviedb.data.api.MoviesService
 import com.example.themoviedb.data.repository.MoviesRepository
 import com.example.themoviedb.data.room.AppDatabase
 import com.example.themoviedb.data.room.MovieDao
@@ -50,7 +50,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideNewsService(retrofit: Retrofit): moviesService = retrofit.create(moviesService::class.java)
+    fun provideMoviesService(retrofit: Retrofit): MoviesService = retrofit.create(MoviesService::class.java)
 
 
 
@@ -73,8 +73,8 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideMainRepository(db: AppDatabase, moviesService: moviesService) : MoviesRepository{
-        return MoviesRepository(db,moviesService)
+    fun provideMainRepository(db: AppDatabase, MoviesService: MoviesService) : MoviesRepository{
+        return MoviesRepository(db,MoviesService)
     }
 
 

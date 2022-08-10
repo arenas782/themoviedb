@@ -28,8 +28,6 @@ interface MovieDao {
         }
     }
 
-
     @Query("SELECT COUNT(id) from movie")
     suspend fun count(): Int
-
 }

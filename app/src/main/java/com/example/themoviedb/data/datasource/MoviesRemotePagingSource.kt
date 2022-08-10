@@ -2,14 +2,13 @@ package com.example.themoviedb.data.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.themoviedb.data.api.moviesService
+import com.example.themoviedb.data.api.MoviesService
 import com.example.themoviedb.data.model.Movie
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.Exception
 import javax.inject.Inject
 
-class MoviesRemotePagingSource @Inject constructor(private val backend : moviesService) : PagingSource<Int, Movie>(){
+class MoviesRemotePagingSource @Inject constructor(private val backend : MoviesService) : PagingSource<Int, Movie>(){
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition
     }

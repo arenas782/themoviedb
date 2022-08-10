@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MoviesFragment  : BaseFragment(){
     lateinit var binding : FragmentMoviesBinding
-    lateinit var viewModel : MoviesViewModel
+    private val viewModel : MoviesViewModel by viewModels()
     private val adapter =
         MovieAdapter { movie : Movie -> goToDetails(movie) }
     private var searchJob: Job? = null
@@ -48,11 +49,6 @@ class MoviesFragment  : BaseFragment(){
 
     }
 
-    @OptIn(ExperimentalPagingApi::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this)[MoviesViewModel::class.java]
-    }
 
     @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,7 +61,7 @@ class MoviesFragment  : BaseFragment(){
     }
 
     private fun goToDetails(movie : Movie){
-        findNavController().navigate( MoviesFragmentDirections.actionMainFragmentToDetailsFragment(movie.poster_path,movie.title,movie.overview))
+        findNavController().navigate( MoviesFragmentDirections.actionMainFragmentToDetailsFragment(movie.id.toString()))
     }
 
     @ExperimentalPagingApi
@@ -75,12 +71,10 @@ class MoviesFragment  : BaseFragment(){
             viewModel.getUpcomingMovies()
                 .collectLatest {
                     adapter.submitData(it)
-
                     it.map { movie ->
                      tempList.add(movie) }
                 }
         }
-
     }
     companion object {
         const val TAG =  "MoviesFragment"

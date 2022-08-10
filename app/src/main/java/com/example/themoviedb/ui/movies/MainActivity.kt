@@ -13,13 +13,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
 
-//        mutableMainProgress.observe(this) {
-//            progress_bar.visibility = it
-//            Log.e("Progress bar ","$it")
-//        }
-    }
-    companion object{
-        val mutableMainProgress = MutableLiveData(View.VISIBLE)
-    }
 }

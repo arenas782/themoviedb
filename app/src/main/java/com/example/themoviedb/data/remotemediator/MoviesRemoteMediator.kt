@@ -1,12 +1,11 @@
 package com.example.themoviedb.data.remotemediator
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.example.themoviedb.data.api.moviesService
+import com.example.themoviedb.data.api.MoviesService
 import com.example.themoviedb.data.model.Movie
 import com.example.themoviedb.data.model.RemoteKeys
 import com.example.themoviedb.data.room.AppDatabase
@@ -15,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 @ExperimentalPagingApi
-class MoviesRemoteMediator @Inject constructor(private val api : moviesService, private val appDatabase: AppDatabase): RemoteMediator<Int, Movie>() {
+class MoviesRemoteMediator @Inject constructor(private val api : MoviesService, private val appDatabase: AppDatabase): RemoteMediator<Int, Movie>() {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Movie>): MediatorResult {
         val key = when (loadType) {
             LoadType.REFRESH -> {
